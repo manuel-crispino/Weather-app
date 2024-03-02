@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap">
+</head>
+<body>
+
+    <div class="container">
+        <div class="column column1">
+            <h1>Check the Weather</h1>
+            <form action="/current-location" method="post">
+                <p>city name</p>
+                <input name="cityName" type="text" >  
+                
+               <button type="submit">submit</button>
+            </form>
+            </div>
+            <div class="column column2">
+                <% if (locals.weatherMain && locals.weatherDescription && locals.temperature && locals.city) { %>
+                    <h2>Weather Information</h2>
+                    <p>City of : <%=city%></p>
+                 
+                    <p>Main: <%= weatherMain %></p>
+                    <p>Description: <%= weatherDescription %></p>
+                    <p>Temperature: <%= temperature %> °</p>
+                  
+
+                <% } else { %>
+                    <p>No weather information available</p>
+                <% } %>
+        </div>
+            <div class="column column3">
+                <% if (locals.weatherMain==='Clouds'){%>
+                    <img style="width: 100%; height: 100%; object-fit: cover;" src="/images/clouds.jpg" alt="Cloudy Weather">
+                    <%}else if(locals.weatherMain==='Rain'){%>
+                        <img style="width: 100%; height: 100%; object-fit: cover;" src="/images/rain.jpg" alt="Rain Weather">
+                    <% }else if(locals.weatherMain==='Clear'){%>
+                        <img style="width: 100%; height: 100%; object-fit: cover;" src="/images/sun.jpg" alt="Clear Weather">
+                    <% }else{ %>
+<!-- ignore img --> >
+                   <% }%>
+            </div>
+        </div>
+   
+</body>
+</html>
